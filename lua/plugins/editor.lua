@@ -79,7 +79,7 @@ return {
 				desc = "Lists files in your current working directory, respects .gitignore",
 			},
 			{
-				";r",
+				";g",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.live_grep({
@@ -89,7 +89,7 @@ return {
 				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
 			},
 			{
-				"\\\\",
+				";b",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.buffers()
@@ -97,7 +97,7 @@ return {
 				desc = "Lists open buffers",
 			},
 			{
-				";t",
+				";h",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.help_tags()
@@ -113,7 +113,7 @@ return {
 				desc = "Resume the previous telescope picker",
 			},
 			{
-				";e",
+				";d",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.diagnostics()
@@ -158,7 +158,7 @@ return {
 
 			opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
 				wrap_results = true,
-				layout_strategy = "horizontal",
+				layout_strategy = "flex",
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
 				winblend = 0,
@@ -177,7 +177,7 @@ return {
 			}
 			opts.extensions = {
 				file_browser = {
-					theme = "dropdown",
+					theme = "ivy",
 					-- disables netrw and use telescope-file-browser in its place
 					hijack_netrw = true,
 					mappings = {
