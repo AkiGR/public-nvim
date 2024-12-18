@@ -36,7 +36,19 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
-keymap.set("n", "te", ":tabedit")
+keymap.set("n", "te", function()
+	require("telescope.builtin").find_files({
+		attach_mappings = function(_, map)
+			map("i", "<CR>", function(prompt_bufnr)
+				local entry = require("telescope.actions.state").get_selected_entry()
+				local filename = entry.path or entry.value
+				require("telescope.actions").close(prompt_bufnr)
+				vim.cmd("tabedit " .. filename)
+			end)
+			return true
+		end,
+	})
+end, { noremap = true, silent = true })
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- Split window
