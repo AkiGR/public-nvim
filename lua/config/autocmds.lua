@@ -12,3 +12,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.conceallevel = 0
 	end,
 })
+
+-- Replace '!=' with '≠' in Go files automatically
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "go",
+	callback = function()
+		vim.cmd("iabbrev != ≠")
+	end,
+})
